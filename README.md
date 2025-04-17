@@ -3,7 +3,7 @@
 A highly customizable Flutter package for creating beautiful animated circles that can be used as progress indicators, pie charts, or visual elements in your Flutter applications.
 
 <p align="center">
-  <img src="docs/showcase.gif" alt="Flutter Animated Circle Showcase" width="400"/>
+  <img src="doc/showcase.gif" alt="Flutter Animated Circle Showcase" width="400"/>
 </p>
 
 ## Features
