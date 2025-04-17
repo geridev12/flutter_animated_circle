@@ -1,7 +1,27 @@
 name: flutter_animated_circle
-description: "A new Flutter package project."
+description: "A Flutter package that provides customizable animated circular widgets with various animation effects."
+
 version: 0.0.1
 
+homepage: https://github.com/geridev12/flutter_animated_circle.git
+
+repository: https://github.com/geridev12/flutter_animated_circle.git
+
+issue_tracker: https://github.com/geridev12/flutter_animated_circle.git/issues
+
+topics:
+  - animation
+  - circle
+  - progress
+  - custom-painter
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
 environment:
   sdk: ^3.7.2
   flutter: ">=1.17.0"
@@ -15,7 +35,5 @@ dev_dependencies:
     sdk: flutter
   very_good_analysis: ^7.0.0
 
-
 flutter:
   uses-material-design: true
-
