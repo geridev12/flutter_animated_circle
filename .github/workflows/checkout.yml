@@ -15,7 +15,7 @@ jobs:
     
     strategy:
       matrix:
-        flutter-version: [3.24.0, 3.29.2]
+        flutter-version: [3.29.0, 3.32.0]
     
     steps:
       - name: 📚 Checkout repository
@@ -41,7 +41,7 @@ jobs:
         run: flutter test --coverage
       
       - name: 📊 Upload coverage to Codecov
-        if: matrix.flutter-version == '3.29.2'
+        if: matrix.flutter-version == '3.32.0'
         uses: codecov/codecov-action@v3
         with:
           file: coverage/lcov.info
@@ -59,7 +59,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.29.2
+          flutter-version: 3.32.0
           cache: true
       
       - name: 📦 Install package dependencies
@@ -89,7 +89,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.29.2
+          flutter-version: 3.32.0
           cache: true
       
       - name: 📦 Install dependencies
