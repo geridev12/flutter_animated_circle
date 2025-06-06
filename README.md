@@ -1,34 +1,41 @@
 # Flutter Animated Circle
 
-A highly customizable Flutter package for creating beautiful animated circles that can be used as progress indicators, pie charts, or visual elements in your Flutter applications.
+[![Pub Package](https://img.shields.io/pub/v/flutter_animated_circle.svg)](https://pub.dev/packages/flutter_animated_circle)
+[![Pub Points](https://img.shields.io/pub/points/flutter_animated_circle)](https://pub.dev/packages/flutter_animated_circle/score)
+[![Platform Support](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web%20%7C%20windows%20%7C%20macos%20%7C%20linux-blue.svg)](https://pub.dev/packages/flutter_animated_circle)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A production-ready Flutter package that provides beautiful, customizable animated circular widgets with smooth animations and extensive configuration options. Perfect for creating progress indicators, pie charts, data visualizations, and engaging UI elements.
 
 <p align="center">
   <img src="doc/showcase.gif" alt="Flutter Animated Circle Showcase" width="400"/>
 </p>
 
-## Features
+## 🎯 Key Features
 
-- **Full Circle Animation**: Create smooth, animated circular progress indicators
-- **Segmented Circle**: Build multi-colored circle segments perfect for pie charts and data visualization
-- **Scroll-Triggered Animation**: Automatically animate circles when they become visible during scrolling
-- **Customizable Appearance**: Control colors, stroke widths, borders, animation timing, and more
-- **Easy to Use**: Simple API designed for both basic and advanced use cases
+- **🎨 Full Circle Animation**: Smooth, customizable circular progress indicators with configurable timing
+- **📊 Segmented Circles**: Multi-colored segments ideal for pie charts, data visualization, and progress tracking
+- **🔄 Scroll-Triggered Animation**: Intelligent viewport detection with automatic animation triggering
+- **⚙️ Extensive Customization**: Granular control over colors, stroke widths, borders, spacing, and timing
+- **🚀 Performance Optimized**: Efficient rendering with RepaintBoundary and optimized painters
+- **📱 Cross-Platform**: Full support for Android, iOS, Web, Windows, macOS, and Linux
+- **🎭 Animation Curves**: Support for all Flutter animation curves and custom easing functions
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Installation
 
-Add `flutter_animated_circle` to your `pubspec.yaml` file:
+Add `flutter_animated_circle` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_animated_circle: ^0.1.0
+  flutter_animated_circle: ^0.0.2
 ```
 
-Or install via command line:
+Then run:
 
 ```bash
-flutter pub add flutter_animated_circle
+flutter pub get
 ```
 
 ### Import
@@ -37,9 +44,11 @@ flutter pub add flutter_animated_circle
 import 'package:flutter_animated_circle/flutter_animated_circle.dart';
 ```
 
-## Usage
+## 📖 Usage Examples
 
-### Basic Full Circle
+### Basic Usage
+
+#### Simple Progress Circle
 
 ```dart
 AnimatedCircleView(
@@ -49,11 +58,11 @@ AnimatedCircleView(
     strokeWidth: 16.0,
     borderWidth: 20.0,
   ),
-  duration: Duration(milliseconds: 800),
+  duration: const Duration(milliseconds: 800),
 )
 ```
 
-### Segmented Circle
+#### Multi-Segment Data Visualization
 
 ```dart
 AnimatedCircleView(
@@ -73,73 +82,322 @@ AnimatedCircleView(
     strokeWidth: 16.0,
     borderWidth: 20.0,
   ),
-  duration: Duration(milliseconds: 800),
+  duration: const Duration(milliseconds: 800),
 )
 ```
 
-### Scroll-Triggered Animation
+### Advanced Features
+
+#### Scroll-Triggered Animation
+
+Automatically animate circles when they become visible during scrolling:
 
 ```dart
-final ScrollController scrollController = ScrollController();
+class ScrollableCircles extends StatefulWidget {
+  @override
+  State<ScrollableCircles> createState() => _ScrollableCirclesState();
+}
 
-// In your build method:
-ListView.builder(
-  controller: scrollController,
-  itemBuilder: (context, index) => AnimatedCircleView(
-    circlePainterConfig: CirclePainterConfig.full(
-      fillColor: Colors.amber,
-      borderColor: Colors.amber.shade800,
-    ),
-    scrollController: scrollController, // Circle animates when visible
-    duration: Duration(milliseconds: 600),
-  ),
-)
+class _ScrollableCirclesState extends State<ScrollableCircles> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      controller: _scrollController,
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return Container(
+          height: 400,
+          padding: const EdgeInsets.all(20),
+          child: AnimatedCircleView(
+            circlePainterConfig: CirclePainterConfig.full(
+              fillColor: Colors.amber,
+              borderColor: Colors.amber.shade800,
+            ),
+            scrollController: _scrollController,
+            duration: const Duration(milliseconds: 600),
+            onAnimationCompleted: () {
+              print('Circle $index animation completed!');
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+}
 ```
 
-### Advanced Customization
+#### Complex Multi-Segment Circle with Custom Styling
 
 ```dart
 AnimatedCircleView(
   circlePainterConfig: CirclePainterConfig.segmented(
     segments: [
-      CircleSegment(fillColor: Colors.red, borderColor: Colors.redAccent, ratio: 0.25),
-      CircleSegment(fillColor: Colors.blue, borderColor: Colors.blueAccent, ratio: 0.25),
-      CircleSegment(fillColor: Colors.green, borderColor: Colors.greenAccent, ratio: 0.25),
-      CircleSegment(fillColor: Colors.purple, borderColor: Colors.purpleAccent, ratio: 0.25),
+      CircleSegment(
+        fillColor: Colors.red.shade400, 
+        borderColor: Colors.red.shade700, 
+        ratio: 0.25
+      ),
+      CircleSegment(
+        fillColor: Colors.blue.shade400, 
+        borderColor: Colors.blue.shade700, 
+        ratio: 0.25
+      ),
+      CircleSegment(
+        fillColor: Colors.green.shade400, 
+        borderColor: Colors.green.shade700, 
+        ratio: 0.25
+      ),
+      CircleSegment(
+        fillColor: Colors.purple.shade400, 
+        borderColor: Colors.purple.shade700, 
+        ratio: 0.25
+      ),
     ],
-    separatorAngle: 0.05, // Space between segments
+    separatorAngle: 0.05, // 5-degree gaps between segments
     baseColor: Colors.grey.shade200, // Background color
+    strokeWidth: 18.0,
+    borderWidth: 22.0,
   ),
-  duration: Duration(milliseconds: 1200),
-  fadeInDuration: Duration(milliseconds: 300),
+  duration: const Duration(milliseconds: 1200),
+  fadeInDuration: const Duration(milliseconds: 300),
   curve: Curves.easeInOutCubic,
-  strokeWidth: 18.0,
-  borderWidth: 22.0,
-  onAnimationCompleted: () => print("Animation completed!"),
+  onAnimationCompleted: () {
+    print("Multi-segment animation completed!");
+  },
 )
 ```
 
-## Customization Options
+## 📋 API Reference
 
-### AnimatedCircleView Properties
+### AnimatedCircleView
+
+The main widget for displaying animated circles.
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `circlePainterConfig` | `CirclePainterConfig` | **required** | Configuration for circle appearance and segments |
+| `scrollController` | `ScrollController?` | `null` | Enables scroll-triggered animation when provided |
+| `onAnimationCompleted` | `VoidCallback?` | `null` | Callback fired when animation completes |
+| `duration` | `Duration` | `600ms` | Duration of the circle drawing animation |
+| `fadeInDuration` | `Duration` | `200ms` | Duration of fade-in effect |
+| `curve` | `Curve` | `Curves.easeIn` | Animation curve for drawing animation |
+| `strokeWidth` | `double` | `16.0` | Width of circle's inner stroke |
+| `borderWidth` | `double` | `20.0` | Width of circle's outer border |
+
+### CirclePainterConfig
+
+Configuration class that defines the visual appearance of circles.
+
+#### CirclePainterConfig.full()
+
+Creates a single-color circle configuration.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `fillColor` | `Color` | **required** | Color of the circle's fill |
+| `borderColor` | `Color` | **required** | Color of the circle's border |
+| `strokeWidth` | `double` | `16.0` | Width of the inner stroke |
+| `borderWidth` | `double` | `20.0` | Width of the outer border |
+| `baseColor` | `Color` | `Colors.transparent` | Background color |
+
+#### CirclePainterConfig.segmented()
+
+Creates a multi-segment circle configuration.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `segments` | `Iterable<CircleSegment>` | **required** | List of circle segments |
+| `strokeWidth` | `double` | `16.0` | Width of segment strokes |
+| `borderWidth` | `double` | `20.0` | Width of segment borders |
+| `baseColor` | `Color` | `Colors.transparent` | Background color |
+| `separatorAngle` | `double` | `0.18` | Angle between segments (radians) |
+
+### CircleSegment
+
+Defines individual segments in a multi-segment circle.
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `circlePainterConfig` | `CirclePainterConfig` | Configuration for circle appearance and segments |
-| `scrollController` | `ScrollController?` | Controller to trigger animation when visible in scroll view |
-| `onAnimationCompleted` | `VoidCallback?` | Function called when animation completes |
-| `duration` | `Duration` | Duration of the circle drawing animation |
-| `fadeInDuration` | `Duration` | Duration of fade-in effect when becoming visible |
-| `curve` | `Curve` | Animation curve for the drawing animation |
-| `strokeWidth` | `double` | Width of circle's stroke |
-| `borderWidth` | `double` | Width of circle's border |
+| `fillColor` | `Color` | Color of the segment's fill |
+| `borderColor` | `Color` | Color of the segment's border |
+| `ratio` | `double` | Portion of circle (0.0 to 1.0) |
 
-## Examples
+**Important**: The sum of all segment ratios must equal 1.0.
 
-See the `/example` folder for complete working examples showing different configurations and use cases.
+## 🎨 Design Patterns & Use Cases
 
-## Additional Information
+### Progress Indicators
 
-- Compatible with Flutter 3.0.0 and above
-- Open source under the MIT License
-- Issues and feature requests are welcome on the GitHub repository
+```dart
+// Simple progress bar alternative
+AnimatedCircleView(
+  circlePainterConfig: CirclePainterConfig.full(
+    fillColor: Theme.of(context).primaryColor,
+    borderColor: Theme.of(context).primaryColor.withOpacity(0.3),
+  ),
+)
+```
+
+### Data Visualization
+
+```dart
+// Pie chart for statistics
+AnimatedCircleView(
+  circlePainterConfig: CirclePainterConfig.segmented(
+    segments: [
+      CircleSegment(fillColor: Colors.blue, borderColor: Colors.blue.shade700, ratio: 0.45),   // 45%
+      CircleSegment(fillColor: Colors.green, borderColor: Colors.green.shade700, ratio: 0.30), // 30%
+      CircleSegment(fillColor: Colors.orange, borderColor: Colors.orange.shade700, ratio: 0.25), // 25%
+    ],
+  ),
+)
+```
+
+### Loading Indicators
+
+```dart
+// Elegant loading spinner
+AnimatedCircleView(
+  circlePainterConfig: CirclePainterConfig.full(
+    fillColor: Colors.blue.withOpacity(0.7),
+    borderColor: Colors.blue,
+    strokeWidth: 8.0,
+    borderWidth: 12.0,
+  ),
+  duration: const Duration(milliseconds: 1000),
+  curve: Curves.easeInOut,
+)
+```
+
+## 🔧 Performance Considerations
+
+- **Efficient Rendering**: Uses `RepaintBoundary` for optimized painting
+- **Memory Management**: Automatic cleanup of animation controllers and listeners
+- **Viewport Optimization**: Scroll-triggered animations only activate when visible
+- **Smooth Animations**: Hardware-accelerated animations using Flutter's animation framework
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Segments don't add up to full circle**
+```dart
+// ❌ This will throw an assertion error
+CirclePainterConfig.segmented(
+  segments: [
+    CircleSegment(ratio: 0.5, ...),
+    CircleSegment(ratio: 0.3, ...), // Total = 0.8, not 1.0
+  ],
+);
+
+// ✅ Correct usage
+CirclePainterConfig.segmented(
+  segments: [
+    CircleSegment(ratio: 0.7, ...),
+    CircleSegment(ratio: 0.3, ...), // Total = 1.0
+  ],
+);
+```
+
+**Animation not triggering with scroll controller**
+- Ensure the `ScrollController` is properly attached to your scrollable widget
+- Check that the circle widget is actually within the scrollable area
+- Verify that at least 30% of the circle is visible before animation triggers
+
+**Performance issues with many circles**
+- Use `RepaintBoundary` around individual circles when rendering many
+- Consider using `ListView.builder` instead of `ListView` for better performance
+- Implement lazy loading for large datasets
+
+## 📱 Example App
+
+This package includes a comprehensive example application demonstrating all features:
+
+```bash
+cd example
+flutter run
+```
+
+The example showcases:
+- **Full Circle Demo**: Basic circular progress indicators
+- **Segmented Circle Demo**: Multi-colored data visualization
+- **Scroll Demo**: Scroll-triggered animations
+- **Performance Demo**: Multiple circles with optimized rendering
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+1. **Fork the repository**
+2. **Clone your fork**:
+   ```bash
+   git clone https://github.com/yourusername/flutter_animated_circle.git
+   cd flutter_animated_circle
+   ```
+3. **Install dependencies**:
+   ```bash
+   flutter pub get
+   cd example && flutter pub get
+   ```
+4. **Run tests**:
+   ```bash
+   flutter test
+   ```
+5. **Run the example**:
+   ```bash
+   cd example && flutter run
+   ```
+
+### Code Quality
+
+This project maintains high code quality standards:
+- **Linting**: Uses `very_good_analysis` for strict code analysis
+- **Testing**: Comprehensive test coverage for all components
+- **Documentation**: Extensive inline documentation and examples
+- **Type Safety**: Full null safety support
+
+## 🔄 Migration Guide
+
+### From v0.0.1 to v0.0.2
+
+No breaking changes. This release adds:
+- Enhanced documentation
+- Additional usage examples
+- Performance improvements
+- Better error handling
+
+## 📊 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes in each version.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🌟 Support
+
+- **Documentation**: Comprehensive API documentation and examples
+- **Issues**: Report bugs and request features on [GitHub Issues](https://github.com/geridev12/flutter_animated_circle/issues)
+- **Discussions**: Join the community on [GitHub Discussions](https://github.com/geridev12/flutter_animated_circle/discussions)
+
+## 🏆 Acknowledgments
+
+- Built with ❤️ by the Flutter community
+- Inspired by modern UI design principles
+- Thanks to all contributors and users
+
+---
+
+<p align="center">
+  <strong>Made with Flutter 💙</strong>
+</p>
