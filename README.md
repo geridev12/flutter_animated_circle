@@ -181,16 +181,16 @@ AnimatedCircleView(
 
 The main widget for displaying animated circles.
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `circlePainterConfig` | `CirclePainterConfig` | **required** | Configuration for circle appearance and segments |
-| `scrollController` | `ScrollController?` | `null` | Enables scroll-triggered animation when provided |
-| `onAnimationCompleted` | `VoidCallback?` | `null` | Callback fired when animation completes |
-| `duration` | `Duration` | `600ms` | Duration of the circle drawing animation |
-| `fadeInDuration` | `Duration` | `200ms` | Duration of fade-in effect |
-| `curve` | `Curve` | `Curves.easeIn` | Animation curve for drawing animation |
-| `strokeWidth` | `double` | `16.0` | Width of circle's inner stroke |
-| `borderWidth` | `double` | `20.0` | Width of circle's outer border |
+| Property               | Type                  | Default         | Description                                      |
+| ---------------------- | --------------------- | --------------- | ------------------------------------------------ |
+| `circlePainterConfig`  | `CirclePainterConfig` | **required**    | Configuration for circle appearance and segments |
+| `scrollController`     | `ScrollController?`   | `null`          | Enables scroll-triggered animation when provided |
+| `onAnimationCompleted` | `VoidCallback?`       | `null`          | Callback fired when animation completes          |
+| `duration`             | `Duration`            | `600ms`         | Duration of the circle drawing animation         |
+| `fadeInDuration`       | `Duration`            | `200ms`         | Duration of fade-in effect                       |
+| `curve`                | `Curve`               | `Curves.easeIn` | Animation curve for drawing animation            |
+| `strokeWidth`          | `double`              | `16.0`          | Width of circle's inner stroke                   |
+| `borderWidth`          | `double`              | `20.0`          | Width of circle's outer border                   |
 
 ### CirclePainterConfig
 
@@ -200,35 +200,35 @@ Configuration class that defines the visual appearance of circles.
 
 Creates a single-color circle configuration.
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `fillColor` | `Color` | **required** | Color of the circle's fill |
-| `borderColor` | `Color` | **required** | Color of the circle's border |
-| `strokeWidth` | `double` | `16.0` | Width of the inner stroke |
-| `borderWidth` | `double` | `20.0` | Width of the outer border |
-| `baseColor` | `Color` | `Colors.transparent` | Background color |
+| Parameter     | Type     | Default              | Description                  |
+| ------------- | -------- | -------------------- | ---------------------------- |
+| `fillColor`   | `Color`  | **required**         | Color of the circle's fill   |
+| `borderColor` | `Color`  | **required**         | Color of the circle's border |
+| `strokeWidth` | `double` | `16.0`               | Width of the inner stroke    |
+| `borderWidth` | `double` | `20.0`               | Width of the outer border    |
+| `baseColor`   | `Color`  | `Colors.transparent` | Background color             |
 
 #### CirclePainterConfig.segmented()
 
 Creates a multi-segment circle configuration.
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `segments` | `Iterable<CircleSegment>` | **required** | List of circle segments |
-| `strokeWidth` | `double` | `16.0` | Width of segment strokes |
-| `borderWidth` | `double` | `20.0` | Width of segment borders |
-| `baseColor` | `Color` | `Colors.transparent` | Background color |
-| `separatorAngle` | `double` | `0.18` | Angle between segments (radians) |
+| Parameter        | Type                      | Default              | Description                      |
+| ---------------- | ------------------------- | -------------------- | -------------------------------- |
+| `segments`       | `Iterable<CircleSegment>` | **required**         | List of circle segments          |
+| `strokeWidth`    | `double`                  | `16.0`               | Width of segment strokes         |
+| `borderWidth`    | `double`                  | `20.0`               | Width of segment borders         |
+| `baseColor`      | `Color`                   | `Colors.transparent` | Background color                 |
+| `separatorAngle` | `double`                  | `0.18`               | Angle between segments (radians) |
 
 ### CircleSegment
 
 Defines individual segments in a multi-segment circle.
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `fillColor` | `Color` | Color of the segment's fill |
-| `borderColor` | `Color` | Color of the segment's border |
-| `ratio` | `double` | Portion of circle (0.0 to 1.0) |
+| Property      | Type     | Description                    |
+| ------------- | -------- | ------------------------------ |
+| `fillColor`   | `Color`  | Color of the segment's fill    |
+| `borderColor` | `Color`  | Color of the segment's border  |
+| `ratio`       | `double` | Portion of circle (0.0 to 1.0) |
 
 **Important**: The sum of all segment ratios must equal 1.0.
 
@@ -282,7 +282,6 @@ AnimatedCircleView(
 - **Efficient Rendering**: Uses `RepaintBoundary` for optimized painting
 - **Memory Management**: Automatic cleanup of animation controllers and listeners
 - **Viewport Optimization**: Scroll-triggered animations only activate when visible
-- **Smooth Animations**: Hardware-accelerated animations using Flutter's animation framework
 
 ## 🐛 Troubleshooting
 
@@ -368,7 +367,7 @@ This project maintains high code quality standards:
 
 ## 🔄 Migration Guide
 
-### From v0.0.1 to v0.0.2
+### From v0.0.2 to v0.0.3
 
 No breaking changes. This release adds:
 - Enhanced documentation
@@ -384,19 +383,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes in each version.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🌟 Support
 
-- **Documentation**: Comprehensive API documentation and examples
-- **Issues**: Report bugs and request features on [GitHub Issues](https://github.com/geridev12/flutter_animated_circle/issues)
-- **Discussions**: Join the community on [GitHub Discussions](https://github.com/geridev12/flutter_animated_circle/discussions)
-
-## 🏆 Acknowledgments
-
-- Built with ❤️ by the Flutter community
-- Inspired by modern UI design principles
-- Thanks to all contributors and users
-
----
 
 <p align="center">
   <strong>Made with Flutter 💙</strong>
