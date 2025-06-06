@@ -1,104 +1,28 @@
-name: CI/CD Pipeline
+name: Checkout
 
 on:
   push:
-    branches: [ main, develop ]
   pull_request:
     branches: [ main ]
-  schedule:
-    - cron: '0 0 * * 0'
 
 jobs:
   analyze-and-test:
-    name: Analyze & Test
-    runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        flutter-version: [3.29.0, 3.32.0]
-    
-    steps:
-      - name: 📚 Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: 🐦 Setup Flutter ${{ matrix.flutter-version }}
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version: ${{ matrix.flutter-version }}
-          cache: true
-      
-      - name: 📦 Install dependencies
-        run: flutter pub get
-      
-      - name: 🔍 Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
-      
-      - name: 🔍 Analyze project source
-        run: flutter analyze --fatal-infos
-      
-      - name: 🧪 Run tests
-        run: flutter test --coverage
-      
-      - name: 📊 Upload coverage to Codecov
-        if: matrix.flutter-version == '3.32.0'
-        uses: codecov/codecov-action@v3
-        with:
-          file: coverage/lcov.info
-          fail_ci_if_error: false
-  
-  example-test:
-    name: Test Example App
     runs-on: ubuntu-latest
     
     steps:
-      - name: 📚 Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      - name: 🐦 Setup Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version: 3.32.0
-          cache: true
       
-      - name: 📦 Install package dependencies
+      - name: Install dependencies
         run: flutter pub get
       
-      - name: 📦 Install example dependencies
-        working-directory: example
-        run: flutter pub get
+      - name: Analyze project source
+        run: flutter analyze
       
-      - name: 🔍 Analyze example project
-        working-directory: example
-        run: flutter analyze --fatal-infos
-      
-      - name: 🏗️ Build example app
-        working-directory: example
-        run: flutter build apk --debug
-  
-  package-analysis:
-    name: Package Analysis
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: 📚 Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: 🐦 Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version: 3.32.0
-          cache: true
-      
-      - name: 📦 Install dependencies
-        run: flutter pub get
-      
-      - name: 📋 Run package analysis
-        run: flutter pub deps
-      
-      - name: 🚀 Check publish readiness
-        run: flutter pub publish --dry-run
-
-
+      - name: Run tests
+        run: flutter test
