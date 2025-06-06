@@ -29,7 +29,7 @@ Add `flutter_animated_circle` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_animated_circle: ^0.0.2
+  flutter_animated_circle: ^0.0.3
 ```
 
 Then run:
