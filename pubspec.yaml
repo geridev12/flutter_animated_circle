@@ -1,5 +1,5 @@
 name: flutter_animated_circle
-description: "A Flutter package that provides customizable animated circular widgets with various animation effects."
+description: "A production-ready Flutter package for creating beautiful, customizable animated circular widgets. Features smooth animations, multi-segment support, scroll-triggered animations, and extensive customization options. Perfect for progress indicators, pie charts, data visualization, and engaging UI elements."
 
 version: 0.0.2
 
