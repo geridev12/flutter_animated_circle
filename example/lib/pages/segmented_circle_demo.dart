@@ -15,10 +15,8 @@ class SegmentedCircleDemo extends StatelessWidget {
           width: 300,
           child: AnimatedCircleView(
             circlePainterConfig: CirclePainterConfig.segmented(
-        
               segments: [
                 CircleSegment(
-                  
                   fillColor: Colors.blue[300]!,
                   borderColor: Colors.blue[500]!,
                   ratio: 0.7,

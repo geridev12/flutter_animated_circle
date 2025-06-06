@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 /// Represents a segment of an animated circle with specific
 /// appearance properties.
-/// A segment is a portion of the circle with its own visual styling. Multiple 
-/// segments can be combined to create multi-colored circle animations, such as 
+/// A segment is a portion of the circle with its own visual styling. Multiple
+/// segments can be combined to create multi-colored circle animations, such as
 /// progress indicators, pie charts, or donut charts.
 ///
 /// Each segment is defined by:
@@ -15,12 +15,12 @@ import 'package:flutter/material.dart';
 /// ```dart
 /// final segments = [
 ///   CircleSegment(
-///     fillColor: Colors.blue, 
+///     fillColor: Colors.blue,
 ///     borderColor: Colors.blue.shade700,
 ///     ratio: 0.6, // 60% of the circle
 ///   ),
 ///   CircleSegment(
-///     fillColor: Colors.grey, 
+///     fillColor: Colors.grey,
 ///     borderColor: Colors.grey.shade700,
 ///     ratio: 0.4, // 40% of the circle
 ///   ),
@@ -31,13 +31,13 @@ class CircleSegment {
   /// Creates a new CircleSegment.
   ///
   /// All parameters are required:
-  /// 
+  ///
   /// * [fillColor] - The color used for the main inner stroke of this segment.
   ///   This is the primary visible color of the segment when drawn.
-  /// 
+  ///
   /// * [borderColor] - The color used for the outer border/edge of this segment.
   ///   Creates a visual distinction between the segment and its background.
-  /// 
+  ///
   /// * [ratio] - Defines what proportion of the circle this segment occupies,
   ///   expressed as a value between 0.0 and 1.0. For example:
   ///   - 0.25 means this segment takes up 25% of the circle (90° arc)
@@ -72,7 +72,7 @@ class CircleSegment {
   /// - 0.5 means this segment takes up 50% of the circle (180° arc)
   /// - 1.0 means this segment occupies the entire circle (360° arc)
   ///
-  /// Ensure the sum of all segment ratios in a circle equals 1.0 
+  /// Ensure the sum of all segment ratios in a circle equals 1.0
   /// for proper rendering.
   final double ratio;
 

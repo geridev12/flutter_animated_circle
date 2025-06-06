@@ -55,7 +55,7 @@ class AnimatedCircleView extends StatefulWidget {
   /// ScrollController that triggers animation when the widget becomes
   /// visible in the viewport.
   ///
-  /// If provided, the animation will start automatically when 
+  /// If provided, the animation will start automatically when
   /// a sufficient portion
   /// of the circle (30% by default) becomes visible in the viewport.
   ///
@@ -115,7 +115,7 @@ class _AnimatedCircleViewState extends State<AnimatedCircleView>
   /// Controller for the circle drawing animation.
   late final AnimationController _animationController;
 
-  /// Notifier that tracks whether the circle is currently 
+  /// Notifier that tracks whether the circle is currently
   /// visible in the viewport.
   /// Used to trigger animation and fade-in effects.
   late final ValueNotifier<bool> _isVisible = ValueNotifier<bool>(false);
